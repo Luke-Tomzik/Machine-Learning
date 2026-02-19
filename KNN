@@ -1,0 +1,26 @@
+#Starting by practicing KNN
+#importing my libraries
+import pandas as pd
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+#Loading in the wine data
+data=load_wine()
+#Setting my predictors and response
+x=data.data
+y=data.target
+#splitting my data
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=5)
+#Scaling my data
+scale=StandardScaler()
+x_train=scale.fit_transform(x_train)
+x_test=scale.transform(x_test)
+#Doing my training
+knn=KNeighborsClassifier(n_neighbors=4)
+knn.fit(x_train,y_train)
+#Making my predictions
+predictions=knn.predict(x_test)
+#Seeing how my model did
+print('Accuracy:',accuracy_score(y_test,predictions))
