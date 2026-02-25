@@ -28,7 +28,6 @@ scaled=StandardScaler()
 x_train=scaled.fit_transform(x_train)
 x_test=scaled.transform(x_test)
 #Performing my lasso
-# LassoCV automatically finds the best alpha
 lasso = LassoCV(alphas=np.logspace(-3, 1, 50), cv=5,max_iter=100000)
 lasso.fit(x_train, y_train)
 #Getting my alpha value 
